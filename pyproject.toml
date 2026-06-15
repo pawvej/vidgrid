@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vidgrid"
+version = "0.1.0"
+description = "Convert video clips into annotated image grids for vision LLM analysis"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Paw Vej" }]
+keywords = ["video", "llm", "vision", "storyboard", "claude", "gpt", "gemini", "ffmpeg"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "Pillow>=10.0.0",
+]
+
+[project.optional-dependencies]
+transcribe = ["faster-whisper>=1.0.0"]
+anthropic = ["anthropic>=0.39.0"]
+openai = ["openai>=1.50.0"]
+gemini = ["google-genai>=0.3.0"]
+llm = [
+    "anthropic>=0.39.0",
+    "openai>=1.50.0",
+    "google-genai>=0.3.0",
+]
+all = [
+    "faster-whisper>=1.0.0",
+    "anthropic>=0.39.0",
+    "openai>=1.50.0",
+    "google-genai>=0.3.0",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-mock>=3.14.0",
+]
+
+[project.scripts]
+vidgrid = "vidgrid.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/pawvej/vidgrid"
+Issues = "https://github.com/pawvej/vidgrid/issues"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["vidgrid*"]
+
+[tool.setuptools.package-data]
+vidgrid = ["assets/fonts/*.ttf"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["integration: tests that require ffmpeg"]

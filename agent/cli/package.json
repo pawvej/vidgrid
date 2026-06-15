@@ -1,0 +1,32 @@
+{
+  "name": "vidgrid",
+  "version": "0.1.0",
+  "description": "Turn a video file into a numbered frame grid an AI can read. Zero-dependency client for the vidgrid render API.",
+  "type": "module",
+  "bin": {
+    "vidgrid": "cli.js"
+  },
+  "files": [
+    "cli.js",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "video",
+    "llm",
+    "ai",
+    "agent",
+    "vision",
+    "frames",
+    "transcript",
+    "ffmpeg"
+  ],
+  "license": "MIT",
+  "homepage": "https://vidgrid.site",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pawvej/vidgrid"
+  }
+}

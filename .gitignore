@@ -1,0 +1,104 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.env.*
+!.env.example
+.venv
+env/
+venv/
+ENV/
+
+# Secrets / credentials
+credentials.json
+secrets.json
+*-secret*.json
+*.pem
+*.key
+*.p12
+service-account*.json
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+
+# User-generated / runtime data
+uploads/
+renders/
+backups/
+dumps/
+
+# Stripe CLI local state
+.stripe/
+
+# Private ops / internal docs (separate from public repo)
+ops/
+internal/
+private/
+
+# Node (if JS tooling lands: Stripe CLI scripts, n8n node build, etc.)
+node_modules/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.cache
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Scratch
+/tmp/
+*.log
+scratch/
+
+# Local-only Claude Code preview config (each dev picks their own port).
+.claude/launch.json
+
+# Internal handoff doc — reference only, kept out of the public repo.
+HANDOFF.md
+
+# Personal launch runbook — deleted after the site is live.
+LAUNCH.md
+
+# Marketing
+MARKETING.md
+
+# Todo
+TODO.md
+
+# Wrangler local state (caches, session tokens, build artifacts).
+.wrangler/
