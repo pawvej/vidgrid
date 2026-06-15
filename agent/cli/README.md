@@ -5,9 +5,9 @@ zero-dependency client for the [vidgrid](https://vidgrid.site) render API.
 
 ```bash
 export VIDGRID_API_KEY="vg_live_..."        # get one at https://vidgrid.site/api
-npx @pawvej/vidgrid clip.mp4                          # → grid.png (+ grid-transcript.txt)
-npx @pawvej/vidgrid talk.mp4 --grid 4x4 --out talk
-npx @pawvej/vidgrid screen.mov --no-transcribe
+npx @vidgrid/cli clip.mp4                          # → grid.png (+ grid-transcript.txt)
+npx @vidgrid/cli talk.mp4 --grid 4x4 --out talk
+npx @vidgrid/cli screen.mov --no-transcribe
 ```
 
 It uploads the file to `POST /v1/render`, writes the grid PNG(s) and transcript

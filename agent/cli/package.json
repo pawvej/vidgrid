@@ -1,5 +1,5 @@
 {
-  "name": "@pawvej/vidgrid",
+  "name": "@vidgrid/cli",
   "version": "0.1.0",
   "description": "Turn a video file into a numbered frame grid an AI can read. Zero-dependency client for the vidgrid render API.",
   "type": "module",

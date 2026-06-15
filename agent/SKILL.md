@@ -43,12 +43,12 @@ Credits never expire. **1 render = 1 credit.** Failed renders are never charged.
 ## Fastest path — the CLI (zero-install)
 
 ```bash
-npx @pawvej/vidgrid clip.mp4                 # → grid.png (+ grid-transcript.txt), prints credits left
-npx @pawvej/vidgrid talk.mp4 --grid 4x4 --out talk
-npx @pawvej/vidgrid screen.mov --no-transcribe
+npx @vidgrid/cli clip.mp4                 # → grid.png (+ grid-transcript.txt), prints credits left
+npx @vidgrid/cli talk.mp4 --grid 4x4 --out talk
+npx @vidgrid/cli screen.mov --no-transcribe
 ```
 
-`npx @pawvej/vidgrid <file>` uploads the file to the render API and writes the numbered
+`npx @vidgrid/cli <file>` uploads the file to the render API and writes the numbered
 grid PNG(s) next to you. Read the PNG(s) to "watch" the video; combine with the
 transcript to answer. Needs `VIDGRID_API_KEY` in the environment.
 
@@ -114,7 +114,7 @@ vidgrid talk.mp4 --transcribe --ask "list the decisions and who owns each"
 ```
 
 The Python CLI (MIT, on PyPI) renders entirely on your machine — use it when you
-have ffmpeg; use `npx @pawvej/vidgrid` / the API when you want server-side rendering.
+have ffmpeg; use `npx @vidgrid/cli` / the API when you want server-side rendering.
 
 ## Notes for agents
 
