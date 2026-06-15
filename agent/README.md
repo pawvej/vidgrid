@@ -7,7 +7,7 @@ of them fetch URLs — if you have a link, download it to a file first.
 | Surface | Install | Best for |
 |---|---|---|
 | **Skill** ([`SKILL.md`](SKILL.md)) | drop into a skills dir | Claude Code / agents that load skill files |
-| **npm CLI** ([`cli/`](cli/)) | `npx @vidgrid/cli clip.mp4` | any agent that can run a shell command |
+| **npm CLI** ([`cli/`](cli/)) | `npx @vidgridapp/cli clip.mp4` | any agent that can run a shell command |
 | **MCP server** ([`mcp/`](mcp/)) | `claude mcp add vidgrid …` | Claude Desktop / Cursor / MCP hosts |
 
 All three call the managed render API (`POST https://api.vidgrid.site/v1/render`,
