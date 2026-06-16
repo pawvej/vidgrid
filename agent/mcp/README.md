@@ -1,5 +1,7 @@
 # vidgrid-mcp
 
+<!-- mcp-name: io.github.pawvej/vidgrid -->
+
 MCP server that gives an AI assistant **eyes for video**. It wraps the
 [vidgrid](https://vidgrid.site) render API: hand it a local video file and it
 returns the numbered frame grid as image blocks (the model literally sees the
@@ -8,7 +10,8 @@ video) plus the transcript.
 ## Install & run
 
 ```bash
-pip install -e .        # or: pip install mcp[cli] httpx
+uvx vidgrid-mcp                        # zero-install (recommended)
+# or: pip install vidgrid-mcp
 export VIDGRID_API_KEY=vg_live_...     # get one at https://vidgrid.site/api
 vidgrid-mcp
 ```
@@ -16,7 +19,7 @@ vidgrid-mcp
 ## Add to Claude Code
 
 ```bash
-claude mcp add vidgrid -e VIDGRID_API_KEY=vg_live_... -- vidgrid-mcp
+claude mcp add vidgrid -e VIDGRID_API_KEY=vg_live_... -- uvx vidgrid-mcp
 ```
 
 ## Tools

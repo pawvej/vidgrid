@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.pawvej/vidgrid",
+  "title": "Vidgrid — eyes for video",
+  "description": "Give an AI agent eyes for video: turn a clip into a numbered frame grid + transcript.",
+  "repository": {
+    "url": "https://github.com/pawvej/vidgrid",
+    "source": "github"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "vidgrid-mcp",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "VIDGRID_API_KEY",
+          "description": "Vidgrid API key (vg_live_...). Free starter credits at https://vidgrid.site/api",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
