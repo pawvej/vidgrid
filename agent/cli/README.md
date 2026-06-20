@@ -11,7 +11,9 @@ npx @vidgridapp/cli screen.mov --no-transcribe
 ```
 
 It uploads the file to `POST /v1/render`, writes the grid PNG(s) and transcript
-next to you, and prints your remaining credits. Requires Node 18+.
+next to you, and prints your remaining credits. It refuses empty files, files
+over 200 MB, and paths without a common video extension before uploading
+anything. Requires Node 18+.
 
 | Option | Meaning |
 |---|---|

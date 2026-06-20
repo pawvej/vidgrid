@@ -2,11 +2,13 @@
 // vidgrid — turn a local video file into a numbered frame grid an AI can read.
 // Zero-dependency client for the vidgrid render API. Node 18+ (global fetch,
 // FormData, Blob).
-import { readFileSync, writeFileSync } from "node:fs";
-import { basename } from "node:path";
+import { readFileSync, statSync, writeFileSync } from "node:fs";
+import { basename, extname } from "node:path";
 
 const API_BASE = (process.env.VIDGRID_API_BASE || "https://api.vidgrid.site").replace(/\/$/, "");
 const KEY = process.env.VIDGRID_API_KEY;
+const MAX_UPLOAD_BYTES = 200 * 1024 * 1024;
+const VIDEO_EXTENSIONS = new Set([".mp4", ".mov", ".m4v", ".webm", ".mkv", ".avi"]);
 
 function usage(code = 2) {
   console.error(`vidgrid — turn a video file into a numbered frame grid for an LLM.
@@ -40,6 +42,32 @@ for (let i = 0; i < args.length; i++) {
 if (!file) usage();
 if (!KEY) {
   console.error("VIDGRID_API_KEY is not set. Get one free at https://vidgrid.site/api");
+  process.exit(1);
+}
+
+let info;
+try {
+  info = statSync(file);
+} catch (e) {
+  console.error(`Cannot stat file: ${file} (${e.code || e.message})`);
+  process.exit(1);
+}
+if (!info.isFile()) {
+  console.error(`Not a regular file: ${file}`);
+  process.exit(1);
+}
+if (info.size === 0) {
+  console.error(`File is empty: ${file}`);
+  process.exit(1);
+}
+if (info.size > MAX_UPLOAD_BYTES) {
+  console.error(`File is too large: ${file} (${info.size} bytes, max ${MAX_UPLOAD_BYTES})`);
+  process.exit(1);
+}
+const ext = extname(file).toLowerCase();
+if (!VIDEO_EXTENSIONS.has(ext)) {
+  console.error(`Refusing to upload non-video-looking file: ${file}`);
+  console.error(`Allowed extensions: ${Array.from(VIDEO_EXTENSIONS).join(", ")}`);
   process.exit(1);
 }
 

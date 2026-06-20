@@ -18,6 +18,8 @@ export VIDGRID_API_KEY="vg_live_..."     # get one at https://vidgrid.site/api
 ```
 
 1 render = 1 credit, credits never expire, failed renders are never charged.
+The remote CLI and MCP server refuse empty files, files over 200 MB, and paths
+without a common video extension before uploading anything.
 
 Prefer fully local with no key and no upload? The open-source Python CLI renders
 on your machine with ffmpeg: `uvx vidgrid clip.mp4 -o grid.png`.

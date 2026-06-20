@@ -20,11 +20,14 @@ from __future__ import annotations
 
 import base64
 import os
+from pathlib import Path
 
 import httpx
 from mcp.server.fastmcp import FastMCP, Image
 
 API_BASE = os.environ.get("VIDGRID_API_BASE", "https://api.vidgrid.site").rstrip("/")
+MAX_UPLOAD_BYTES = 200 * 1024 * 1024
+VIDEO_EXTENSIONS = {".mp4", ".mov", ".m4v", ".webm", ".mkv", ".avi"}
 
 mcp = FastMCP("vidgrid")
 
@@ -37,6 +40,27 @@ def _auth_headers() -> dict[str, str]:
             "(enter an email, click the link) and export it before starting the server."
         )
     return {"Authorization": f"Bearer {key}"}
+
+
+def _validated_video_path(file_path: str) -> Path:
+    path = Path(file_path).expanduser()
+    if not path.is_file():
+        raise RuntimeError(f"File not found or not a regular file: {file_path}")
+    size = path.stat().st_size
+    if size == 0:
+        raise RuntimeError(f"File is empty: {file_path}")
+    if size > MAX_UPLOAD_BYTES:
+        raise RuntimeError(
+            f"File is too large: {file_path} ({size} bytes, max {MAX_UPLOAD_BYTES}). "
+            "Trim or re-encode it first."
+        )
+    if path.suffix.lower() not in VIDEO_EXTENSIONS:
+        allowed = ", ".join(sorted(VIDEO_EXTENSIONS))
+        raise RuntimeError(
+            f"Refusing to upload non-video-looking file: {file_path}. "
+            f"Allowed extensions: {allowed}."
+        )
+    return path
 
 
 @mcp.tool()
@@ -58,16 +82,15 @@ def render_video(file_path: str, grid: str | None = None, transcribe: bool = Tru
 
     Costs 1 credit. Failed renders are not charged.
     """
-    if not os.path.isfile(file_path):
-        raise RuntimeError(f"File not found: {file_path}")
+    path = _validated_video_path(file_path)
 
     data: dict[str, str] = {"transcribe": str(transcribe).lower()}
     if grid:
         data["grid"] = grid
 
     try:
-        with open(file_path, "rb") as fh:
-            files = {"file": (os.path.basename(file_path), fh, "application/octet-stream")}
+        with path.open("rb") as fh:
+            files = {"file": (path.name, fh, "application/octet-stream")}
             r = httpx.post(
                 f"{API_BASE}/v1/render",
                 files=files,
