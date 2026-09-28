@@ -4,7 +4,6 @@
 [![Python](https://img.shields.io/pypi/pyversions/vidgrid?style=flat-square)](https://pypi.org/project/vidgrid/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-black.svg?style=flat-square)](LICENSE)
 [![Downloads](https://img.shields.io/pypi/dm/vidgrid?style=flat-square&color=e03127)](https://pypi.org/project/vidgrid/)
-[![Hosted](https://img.shields.io/badge/hosted-vidgrid.site-e03127?style=flat-square)](https://vidgrid.site)
 
 > Convert video clips into annotated image grids for vision LLM analysis.
 > **One cell = one second, by default.**
@@ -16,10 +15,6 @@ one frame per second from a video, tiles them into a numbered storyboard with
 timestamps, and optionally sends the result to Claude, GPT, or Gemini with a
 prompt. The result is something close to "my LLM just watched a video" for
 the cost of a handful of image uploads.
-
-**Don't want to install?** Use the hosted version at
-[vidgrid.site](https://vidgrid.site) — drop a file, get the grid in the
-browser. 3 free renders, $5 lifetime after that. Free for ever on the CLI.
 
 ## The model
 
